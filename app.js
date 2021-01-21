@@ -1,36 +1,24 @@
 const readLineSync = require('readline-sync');
+const encoder  = require('./urlEncoder.js');
+const base64Converter  = require('./base64Converter.js');
+const hashing  = require('./stringHashing.js');
 
-
-function urlEncode(url) {
-    let encodedurl = url.replace(":","%3A")
-    encodedurl = encodedurl.replace("//","%2F")
-    encodedurl = encodedurl.replace(".","%1D")
-    return encodedurl;
-  }
-  
-  function urlDecode(url) {
-    let decodedurl = url.replace("%3A",":")
-    decodedurl = decodedurl.replace("%2F","//")
-    decodedurl = decodedurl.replace("%1D",".")
-    return decodedurl;
-  }
-  
-  const selectedUtilityOption = parseInt(readLineSync.question('Welcome to URL Encoder/Decoder. Which utility function would you like to use?\n1. urlEncode\n2. urlDecode\n'));
-  
-  console.log(`You selected ${selectedUtilityOption}`);
-  
-  switch(selectedUtilityOption) {
+const startapp = (index) => {
+  switch (index) {
     case 1:
-      const urlToEncode = readLineSync.question('Please enter the url to be encoded\n');
-      const encodedURL = urlEncode(urlToEncode);
-      console.log(encodedURL);
+      encoder.start();
       break;
     case 2:
-      const urlToDecode = readLineSync.question('Please enter the url to be decoded\n');
-      const decodedURL = urlDecode(urlToDecode);
-      console.log(decodedURL);
+      base64Converter.start();
       break;
+    case 3:
+      hashing.start();
+      break;
+
     default:
-      console.log('Invalid URL\n');
       break;
   }
+}
+
+const selectapp = readLineSync.question('Select the app you want to use\n1. urlEnode\n2. base64Converter\n3. stringHashing\n');
+startapp(parseInt(selectapp));
