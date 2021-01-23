@@ -2,21 +2,11 @@ const readLineSync = require('readline-sync');
 
 
 function urlEncode(url) {
-    let encodedurl = url.replace(":", "%3A")
-    encodedurl = encodedurl.replace("//", "%2F")
-    encodedurl = encodedurl.replace("/", "%2D")
-    encodedurl = encodedurl.replace(".", "%1D")
-    encodedurl = encodedurl.replace(" ", "%20")
-    return encodedurl;
+    return encodeURIComponent(url);
 }
 
 function urlDecode(url) {
-    let decodedurl = url.replace("%3A", ":")
-    decodedurl = decodedurl.replace("%2F", "//")
-    decodedurl = decodedurl.replace("%2D", "/")
-    decodedurl = decodedurl.replace("%20", " ")
-    decodedurl = decodedurl.replace("%1D", ".")
-    return decodedurl;
+    return decodeURIComponent(url);
 }
 
 function start() {
